@@ -14,7 +14,7 @@ defmodule ExampleProject.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      mod: {ExampleProject, []},
+      mod: {ExampleProject, []}, # specifying the application module
       extra_applications: [:logger]
     ]
   end
@@ -22,9 +22,20 @@ defmodule ExampleProject.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:uuid, "~> 1.1"}
+      {:uuid, "~> 1.1"} # adding the uuid dependency from hex, you must run "mix deps.get" to fetch it
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
   end
 end
+
+### Commands
+
+# To fetch dependencies, run:
+# mix deps.get
+# To compile the project, run:
+# mix compile
+# To run the application, use:
+# mix run
+# To create a project skeleton, use:
+# mix new example_project
