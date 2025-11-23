@@ -1,3 +1,12 @@
+defmodule Membership do
+  defstruct [:type, :price]
+end
+
+defmodule User do
+  defstruct [:name, :age, :membership]
+end
+
+
 defmodule ExampleProject do
   use Application
   alias UUID # Using the UUID module from the uuid dependency
@@ -90,6 +99,22 @@ defmodule ExampleProject do
 
     Enum.each(new_users, fn {name, membership} ->
       IO.puts("#{name} has #{membership} membership, paying $#{prices[membership]}.")
+    end)
+
+    gold_membership = %Membership{type: :gold, price: 39.99} # creating a Membership
+    silver_membership = %Membership{type: :silver, price: 29.99}
+    bronze_membership = %Membership{type: :bronze, price: 19.99}
+    none_membership = %Membership{type: :none, price: 0.0}
+
+    users_with_structs = [
+      %User{name: "Caleb", age: 30, membership: gold_membership},
+      %User{name: "Alice", age: 25, membership: silver_membership},
+      %User{name: "Bob", age: 28, membership: bronze_membership},
+      %User{name: "Eve", age: 22, membership: none_membership}
+    ]
+
+    Enum.each(users_with_structs, fn %User{name: name, age: age, membership: membership} ->
+      IO.puts("#{name} is #{age} years old and has #{membership.type} membership, paying $#{membership.price}.")
     end)
   end
 end
