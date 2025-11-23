@@ -5,7 +5,7 @@ defmodule ExampleProject do
   @x 5  # Module attribute
 
   def start(_type, _args) do
-    IO.puts(ExampleProject.main()) # Calling the main function
+    ExampleProject.main() # Calling the main function
     IO.puts(UUID.uuid4()) # Using a dependency function
     Supervisor.start_link([], strategy: :one_for_one) # the module must return a supervisor
   end
@@ -32,5 +32,15 @@ defmodule ExampleProject do
       :silver -> IO.puts("You have access to the regular lounge.")
       :bronze -> IO.puts("You have access to the general area.")
     end
+
+    IO.puts(?a) # character literal, numerical representation of a Unicode character
+
+    time = Time.new!(14, 30, 0, 0) # creating a Time struct
+    date = Date.new!(2024, 1, 15) # creating a Date struct
+    dateTime = DateTime.new!(date, time) # creating a DateTime struct
+    IO.inspect(time)
+    IO.inspect(date)
+    IO.inspect(dateTime)
+    IO.puts(dateTime.year) # accessing a field in a struct
   end
 end
