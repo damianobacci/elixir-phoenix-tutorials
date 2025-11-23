@@ -42,5 +42,54 @@ defmodule ExampleProject do
     IO.inspect(date)
     IO.inspect(dateTime)
     IO.puts(dateTime.year) # accessing a field in a struct
+
+
+    memberships = {:bronze, :silver} # tuple
+    memberships = Tuple.append(memberships, :gold) # adding an element to a tuple
+    IO.inspect(memberships)
+
+    prices = {19.99, 29.99, 39.99}
+    avg = Tuple.sum(prices) / tuple_size(prices) # calculating average from tuple elements
+    IO.puts("Average price: #{avg}")
+    IO.puts("Price for #{elem(memberships, 0)}: $#{elem(prices, 0)}") # accessing tuple elements
+
+    user1 = {"Caleb", 30} # tuple with mixed types
+    user2 = {"Alice", 25}
+    user3 = {"Bob", 28}
+
+
+    {name, age} = user1 # pattern matching to extract values
+    IO.puts("#{name} is #{age} years old.")
+
+    users = [user1, user2, user3] # list of tuples
+
+    Enum.each(users, fn {name, age} -> # iterating over the list with pattern matching
+      IO.puts("#{name} is #{age} years old.")
+    end)
+
+    memberships = %{ # map
+      gold: :gold,
+      silver: :silver,
+      bronze: :bronze,
+      none: :none
+    }
+
+    prices = %{
+      gold: 39.99,
+      silver: 29.99,
+      bronze: 19.99,
+      none: 0.0
+    }
+
+    new_users = [
+      {"Caleb", memberships.gold},
+      {"Alice", memberships.silver},
+      {"Bob", memberships.bronze},
+      {"Eve", memberships.none}
+    ]
+
+    Enum.each(new_users, fn {name, membership} ->
+      IO.puts("#{name} has #{membership} membership, paying $#{prices[membership]}.")
+    end)
   end
 end
